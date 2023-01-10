@@ -27,7 +27,7 @@ Qualitative data: Data that can take on specific set of values that represents c
 ## Estimates of location
 
 Import libraries and read data
-'''
+```
 %matplotlib inline
 
 from pathlib import Path
@@ -45,48 +45,48 @@ import matplotlib.pylab as plt
 
 
 state = pd.read_csv('state.csv')
-'''
+```
 
 1) Mean (average): sum of all values divided by number of values
 
-'''
+```
 state['Population'].mean()
-'''
+```
 
 2) Weighted mean (Weighted average) : Sum of all values times a weight divided by the sum of weights
 
-'''
+```
 np.average(state['Murder.Rate'], weights=state['Population'])
-'''
+```
 
 3) Trimmed mean (truncated mean) : The average of all values after dropping a fixed number of extreme values
 
-'''
+```
 trim_mean(state['Population'], 0.1)
-'''
+```
 
 
 4) Median (50th percentile): Number that is larger than half of the value and smaller than half of the value.
-'''
+```
 state['Population'].median()
-'''
+```
 
 5) Weighted median : Value such that one-half of the sum of weights lies above and below the sorted data
 
-'''
+```
 wquantiles.median(state['Murder.Rate'], weights=state['Population'])
-'''
+```
 
 6) Mode : Mode in french means popular. Value that occurs most frequently. There might be none, one or more than one values. 
 
-'''
+```
 stats.mode(state['Population'])
-'''
+```
 
 7) Percentile (Quantile) : The value such that P percent of value lies below it.
-'''
+```
 state['Murder.Rate'].quantile([0.05, 0.25, 0.5, 0.75, 0.95])
-'''
+```
 
 Mean vs median:
 
@@ -100,14 +100,14 @@ Variability, also referred as dispersion, mesaures whether the data are tightly 
 2) Variance: Sum of squared deviations from the mean divided by n-1.
 3) Standard deviation: Standard deviation measures the dispersion of a dataset relative to its mean (square root of the variance). It is easier to interpret than variance as it is on same scale as the original data.
 
-'''
+```
 state['Population'].std()
-'''
+```
 4) Mean absolute deviation (l1 norm, Manhattan norm): Mean of the absolute values of the deviation from the mean.
 
-'''
+```
 robust.scale.mad(state['Population'])
-'''
+```
 
 5) Range: Difference between largest and smallest value in a dataset. 
 
@@ -129,38 +129,38 @@ Exploring data distribution:
 
 1) Boxplot : Boxplots are based on percentile and helps to see distribution of data. It depicts five key number of data (smallest value, Q1, Q2, Q3 and maximum value). Any data outside the whiskers plotted as single line or circles are often considered as outliers.
 
-'''
+```
 ax = (state['Population']/1000000).plot.box(figsize=(5, 5))
 ax.set_ylabel('Population (millions)')
 plt.show()
-'''
+```
 
 2) Frequency table: FT divides the variable range into equally spaced segments and tells how many values fall within each segment. 
 
-'''
+```
 binnedPopulation = pd.cut(state['Population'], 10)
 print(binnedPopulation.value_counts())
-'''
+```
 
 3) Histogram: Histogram is a specific type of bar graph used to visualize frequency table, with bins on the x-axis and data count on y-axis.
 
-'''
+```
 ax = (state['Population'] / 1000000).plot.hist(figsize=(5, 5))
 ax.set_xlabel('Population (millions)')
 
 plt.tight_layout()
 plt.show()
-'''
+```
 
 4) Density plot: Smoothed version of the histogram, computed directly from the data through a kernel density estimation.
 
-'''
+```
 ax = state['Murder.Rate'].plot.hist(density=True, xlim=[0, 12], 
                                     bins=range(1,12), figsize=(5, 5))
 state['Murder.Rate'].plot.density(ax=ax)
 ax.set_xlabel('Murder Rate (per 100,000)')
 plt.show()
-'''
+```
 
 Some terms used in data distribution:
 
