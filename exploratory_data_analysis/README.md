@@ -147,8 +147,6 @@ print(binnedPopulation.value_counts())
 ```
 ax = (state['Population'] / 1000000).plot.hist(figsize=(5, 5))
 ax.set_xlabel('Population (millions)')
-
-plt.tight_layout()
 plt.show()
 ```
 
